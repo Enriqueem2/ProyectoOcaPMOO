@@ -5,7 +5,7 @@ public class Jugador {
 	private String nom;
 	private String color;
 	private int posCasilla;
-
+	private Dado dado;
 //-----------------Constructor , Getters y Setters-------------------------------
 	public Jugador (String pNom,String pColor) {
 		this.nom = pNom;
@@ -25,11 +25,14 @@ public class Jugador {
 		return this.posCasilla;
 	}
 //--------------Metodos-------------------------------------------------
-	public int tirarDado(Dado pDado) {
-		return pDado.tirarDado();
+	public void tirarDado() {
+	int tirada = dado.tirarDado();
+	this.avanzar();
+	
 	}
-	public void avanzar() {
-		int sumar = this.tirarDado();
+	private void avanzar() {
+	int tirada = dado.tirarDado();
+	posCasilla = posCasilla + tirada;
 		
 	}
 	public void perderTurnos() {
