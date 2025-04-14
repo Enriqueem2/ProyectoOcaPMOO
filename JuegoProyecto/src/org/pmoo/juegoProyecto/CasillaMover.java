@@ -10,19 +10,12 @@ public class CasillaMover extends Casilla{
 	        this.volverATirar = pVolverATirar;
 	    }
 
-	    @Override // Casillas Puentes, Dados y Ocas
+	    @Override // Casillas Puentes y Dados
 	    public void aplicarEfecto(Jugador pJugador, Juego pJuego) {
 	        pJugador.setPosicion(destino);
 	        if (volverATirar) {  // Dados y  Ocas
 	            pJugador.tirarDado();
-	        }else {  //Puentes
-	        	if (pJugador.getPosicion() == 6) {
-	        	    pJugador.setPosicion(12);
-	        	} else if (pJugador.getPosicion() == 12) {
-	        	    pJugador.setPosicion(6);
-	        	}
-	        }
-	        
+	        }   
 	    }
 }
 
