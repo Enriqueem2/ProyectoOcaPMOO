@@ -52,7 +52,7 @@ public class Juego {
         turnoActual.tirarDado();
         
         // Comprobar casilla
-        Casilla casilla = Tablero.getCasilla(turnoActual.getPosicion());
+        Casilla casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
         casilla.aplicarEfecto(turnoActual, this);
         
         // Comprobar si hay un ganador
@@ -65,11 +65,11 @@ public class Juego {
         
         public void cambiarTurno() {
 
-        	int index = listaJugadores.indexOf(turnoActual);
+        	int i = listaJugadores.indexOf(turnoActual);
             
             // Cambia al siguiente jugador, o al primero si es el último
-            if (index + 1 < listaJugadores.size()) {
-                turnoActual = listaJugadores.get(index + 1);
+            if (i + 1 < listaJugadores.size()) {
+                turnoActual = listaJugadores.get(i + 1);
             } else {
                 turnoActual = listaJugadores.get(0); // Si es el último jugador, vuelve al primero
             }
