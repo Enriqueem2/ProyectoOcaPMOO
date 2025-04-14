@@ -1,5 +1,4 @@
 package org.pmoo.juegoProyecto;
-
 import java.util.ArrayList;
 
 public class Juego {
