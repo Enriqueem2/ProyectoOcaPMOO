@@ -1,8 +1,8 @@
 package org.pmoo.juegoProyecto;
 
 public class CasillaNormal extends Casilla {
-	public CasillaNormal(int pnumCasilla) {
-        super(pnumCasilla);
+	public CasillaNormal(int pNumCasilla) {
+        super(pNumCasilla);
     }
 
     @Override
@@ -10,4 +10,3 @@ public class CasillaNormal extends Casilla {
         // No hace nada
     }
 }
-
