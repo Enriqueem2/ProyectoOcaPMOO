@@ -9,6 +9,7 @@ public class CasillaPerderTurno extends Casilla{
         this.turnosPerdidos = pTurnosPerdidos;
     }
 
+
     @Override
     public void aplicarEfecto(Jugador pJugador, Juego pJuego) {
         pJugador.perderTurnos(turnosPerdidos);

@@ -45,8 +45,4 @@ public Jugador (String pNom, String pColor) {
 	    this.turnosPorPerder += pTurnos;
 	}
 	
-	public void moverACasilla(int pNuevaPos) {
-		this.posCasilla = pNuevaPos;
-	}
-	
 }
