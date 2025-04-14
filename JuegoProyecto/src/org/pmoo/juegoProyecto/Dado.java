@@ -10,7 +10,7 @@ public class Dado {
         this.numCaras = 6;  // Por defecto, el dado tiene 6 caras
     }
 
-    public static Dado getInstance() {
+    public static Dado getMiDado() {
         if (miDado == null) {
         	miDado = new Dado();
         }

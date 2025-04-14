@@ -7,7 +7,6 @@ public class Jugador {
 	private int posCasilla;
 	private int turnosPorPerder;
 
-//
 public Jugador (String pNom, String pColor) {
 		this.nom = pNom;	
 		this.color = pColor;
@@ -33,14 +32,13 @@ public Jugador (String pNom, String pColor) {
 	
 //--------------Métodos-------------------------------------------------
 	
-	public void tirarDado(Dado pDado) {
-	int tirada = Dado.getInstance().tirarDado();
+	public void tirarDado() {
+	System.out.println("Ha salido un"+ Dado.getMiDado().tirarDado());
 	this.avanzar();
 	}
 	
 	private void avanzar() {
-	int tirada = Dado.getInstance().tirarDado();
-	posCasilla = posCasilla + tirada;
+	this.posCasilla = posCasilla + Dado.getMiDado().tirarDado();
 	}
 	
 	public void perderTurnos(int pTurnos) {
