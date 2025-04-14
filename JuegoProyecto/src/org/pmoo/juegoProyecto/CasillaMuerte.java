@@ -10,5 +10,5 @@ public void aplicarEfecto(Jugador pJugador, Juego pJuego) {
     // No hace nada
 	pJugador.setPosicion(0);
 	System.out.println("El jugador"+ pJugador.getNombre()+"Ha caido en la casilla Muerte y vuelve al principio");
-}
+	}
 }
