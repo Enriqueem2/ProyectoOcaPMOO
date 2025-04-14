@@ -55,7 +55,7 @@ public class Juego {
         Casilla casilla = Tablero.getCasilla(turnoActual.getPosicion());
         casilla.aplicarEfecto(turnoActual, this);
         
-        // Comprobar si hay un ganador después del turno
+        // Comprobar si hay un ganador
         if (comprobarGanador(turnoActual)) {
             System.out.println(turnoActual.getNombre() + " ha ganado el juego!");
         } else {
