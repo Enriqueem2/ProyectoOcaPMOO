@@ -11,7 +11,7 @@ public class CasillaMover extends Casilla{
 	    }
 
 	    @Override // Casillas Puentes y Dados
-	    public void aplicarEfecto(Jugador pJugador, Juego pJuego) {
+	    public void aplicarEfecto(Jugador pJugador) {
 	        pJugador.setPosicion(destino);
 	        if (volverATirar) {  // Dados y  Ocas
 	            pJugador.tirarDado();

@@ -6,6 +6,7 @@ public class Jugador {
 	private String color;
 	private int posCasilla;
 	private int turnosPorPerder;
+	private int num;
 
 public Jugador (String pNom, String pColor) {
 		this.nom = pNom;	
@@ -33,12 +34,22 @@ public Jugador (String pNom, String pColor) {
 //--------------MÃ©todos-------------------------------------------------
 	
 	public void tirarDado() {
-	System.out.println("Ha salido un"+ Dado.getMiDado().tirarDado());
-	this.avanzar();
+		if (this.posCasilla + num == 63) {
+			System.out.println("Ha salido un " + num);
+			this.avanzar();
+			System.out.println("¡Has llegado justo a la meta!");
+		} else if (this.posCasilla + num > 63) {
+			System.out.println("Ha salido un " + num);
+			System.out.println("¡Te pasaste! Necesitas sacar el número exacto para ganar.");
+			// No se mueve
+		} else {
+			System.out.println("Ha salido un " + num);
+			this.avanzar();
+		}
 	}
 	
 	private void avanzar() {
-	this.posCasilla = posCasilla + Dado.getMiDado().tirarDado();
+	this.posCasilla = posCasilla + num;
 	}
 	
 	public void perderTurnos(int pTurnos) {
