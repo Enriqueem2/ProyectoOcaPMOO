@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Dado {
 
-	private int numCaras = 12;
+	private int numCaras;
 	
 	public Dado (int pNumCaras ) {
 		this.numCaras = pNumCaras;

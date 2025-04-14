@@ -1,6 +1,16 @@
 package org.pmoo.juegoProyecto;
 
-public class CasillaMuerte {
-	//TODO Hacer Clase
+public class CasillaMuerte extends Casilla {
+public CasillaMuerte (int pNumCasilla) {
+	super(pNumCasilla);
+}
+
+@Override
+public void aplicarEfecto(Jugador pJugador, Juego pJuego) {
+    // No hace nada
+	pJugador.setPosicion(0);
+	System.out.println("El jugador"+ pJugador.getNombre()+"Ha caido en la casilla Muerte y vuelve al principio");
+}
+
 
 }
