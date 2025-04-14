@@ -5,7 +5,7 @@ public class CasillaNormal extends Casilla {
         super(pNumCasilla);
     }
 
-    public void aplicarEfecto(Jugador pJugador, Juego pJuego) {
+    public void aplicarEfecto(Jugador pJugador) {
         // No hace nada
     }
 }

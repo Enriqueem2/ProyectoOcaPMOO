@@ -55,6 +55,5 @@ public Jugador (String pNom, String pColor) {
 	public void perderTurnos(int pTurnos) {
 	    this.turnosPorPerder += pTurnos;
 	}
-	//hay un error?
 	
 }

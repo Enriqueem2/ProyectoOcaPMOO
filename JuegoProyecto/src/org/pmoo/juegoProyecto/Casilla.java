@@ -7,5 +7,5 @@ public abstract class Casilla {
 		this.numCasilla = pNumCasilla;
 	}
 	
-	public abstract void aplicarEfecto (Jugador pJugador, Juego pJuego);
+	public abstract void aplicarEfecto (Jugador pJugador);
 }
