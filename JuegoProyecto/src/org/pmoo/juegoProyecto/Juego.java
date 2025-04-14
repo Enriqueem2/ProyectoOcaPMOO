@@ -71,7 +71,7 @@ public class Juego {
             if (i + 1 < listaJugadores.size()) {
                 turnoActual = listaJugadores.get(i + 1);
             } else {
-                turnoActual = listaJugadores.get(0); // Si es el último jugador, vuelve al primero
+                turnoActual = listaJugadores.get(0); // Si es el último jugador vuelve al primero
             }
         }
 
