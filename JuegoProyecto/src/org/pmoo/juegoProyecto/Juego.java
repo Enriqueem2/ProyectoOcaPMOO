@@ -53,7 +53,7 @@ public class Juego {
         
         // Comprobar casilla
         Casilla casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
-        casilla.aplicarEfecto(turnoActual, this);
+        casilla.aplicarEfecto(turnoActual);
         
         // Comprobar si hay un ganador
         if (comprobarGanador(turnoActual)) {
