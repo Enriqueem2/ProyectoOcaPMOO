@@ -5,16 +5,22 @@ public class Jugador {
 	private String nom;
 	private String color;
 	private int posCasilla;
+	private int turnosPorPerder;
 
-//-----------------Constructor , Getters y Setters-------------------------------
+//-----------------Constructor , Getters y Setters----------------------
 	public Jugador (String pNom,String pColor) {
 		this.nom = pNom;
 		this.color = pColor;
 		this.posCasilla = 0;
+		this.turnosPorPerder = 0;
 	}
 	
 	public String getNombre () {
 		return this.nom;
+	}
+	
+	public int getTurnosPorPerder () {
+		return this.turnosPorPerder;
 	}
 	
 	public void setPosicion(int pPos) {
@@ -24,7 +30,7 @@ public class Jugador {
 	public int getPosicion() {
 		return this.posCasilla;
 	}
-//--------------Metodos-------------------------------------------------
+//--------------Métodos-------------------------------------------------
 	public int tirarDado(Dado pDado) {
 		return pDado.tirarDado();
 	}
