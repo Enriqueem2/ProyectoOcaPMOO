@@ -16,7 +16,7 @@ public class CasillaMover extends Casilla{
 
 	        //Casillas Dados y Casillas Ocas
 	        if (volverATirar) {
-	            int tirada = pJugador.tirarDado();
+	            int tirada = pJugador.tirarDado(Dado);
 	            pJugador.avanzar(tirada, pJuego);
 	        }
 	    }

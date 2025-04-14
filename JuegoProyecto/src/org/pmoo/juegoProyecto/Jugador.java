@@ -32,14 +32,14 @@ public class Jugador {
 	}
 //--------------Métodos-------------------------------------------------
 	public int tirarDado(Dado pDado) {
-		return pDado.tirarDado();
+		return pDado.getInstance.tirarDado(pDado);
 	}
 	public void avanzar() {
-		int sumar = this.tirarDado();
+		int sumar = this.getInstance.tirarDado(pDado);
 		
 	}
-	public void perderTurnos() {
-		
+	public void perderTurnos(int pTurnos) {
+	    this.turnosPorPerder += pTurnos;
 	}
 	
 	public void moverACasilla(int pNuevaPos) {
