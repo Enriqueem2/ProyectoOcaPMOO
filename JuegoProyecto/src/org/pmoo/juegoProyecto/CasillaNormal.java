@@ -5,8 +5,7 @@ public class CasillaNormal extends Casilla {
         super(pNumCasilla);
     }
 
-    @Override
-    public void aplicarEfecto(pJugador jugador, pJuego juego) {
+    public void aplicarEfecto(Jugador pJugador, Juego pJuego) {
         // No hace nada
     }
 }
