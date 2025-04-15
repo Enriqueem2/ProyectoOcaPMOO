@@ -10,7 +10,7 @@ public class Jugador {
 public Jugador (String pNom, String pColor) {
 		this.nom = pNom;	
 		this.color = pColor;
-		this.posCasilla = 0;
+		this.posCasilla = 1;
 		this.turnosPorPerder = 0;
 	}
 	
