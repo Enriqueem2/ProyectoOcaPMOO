@@ -1,5 +1,4 @@
 package org.pmoo.juegoProyecto;
-
 public class Jugador {
 
 	private String nom;
@@ -34,6 +33,7 @@ public Jugador (String pNom, String pColor) {
 //--------------Métodos-------------------------------------------------
 	
 	public void tirarDado() {
+		num= Dado.getMiDado().tirarDado();
 		if (this.posCasilla + num == 63) {
 			System.out.println("Ha salido un " + num);
 			this.avanzar();
@@ -46,6 +46,7 @@ public Jugador (String pNom, String pColor) {
 			System.out.println("Ha salido un " + num);
 			this.avanzar();
 		}
+		num = 0;
 	}
 	
 	private void avanzar() {
