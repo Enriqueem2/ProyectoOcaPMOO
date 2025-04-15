@@ -1,6 +1,5 @@
 package org.pmoo.juegoProyecto;
 import java.util.ArrayList;
-
 public class Juego {
 	public static void main(String[] args) {}
 	
@@ -47,26 +46,30 @@ public class Juego {
  
         public void jugarTurno() {
         System.out.println(turnoActual.getNombre() + " es tu turno.");
+        if(turnoActual.getTurnosPorPerder()>0) {
+    		if(this.turnoActual.getTurnosPorPerder() ==1) {
+    			System.out.println("Puedes volver a tirar en el siguiente turno");
+    		}else {
+    			System.out.println("Puedes volver a tirar en "+(this.turnoActual.getTurnosPorPerder()-1)+" turnos");
+    		}
+    		turnoActual.reducirTurnosPorPerder();
+    		cambiarTurno();
+    	}else {
+    		turnoActual.tirarDado();
+    		System.out.println("Est·s en la posiciÛn " + turnoActual.getPosicion());
+    		
 
-        if(turnoActual.getTurnosPorPerder() > 0) {
-        	turnoActual.reducirTurnosPorPerder();
-        	cambiarTurno();
-        	System.out.println("Todav√≠a te quedan turnos por perder");
-        }
-        
-        // El jugador tira el dado y avanza
-        turnoActual.tirarDado();
-        
-        // Comprobar casilla
-        Casilla casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
-        casilla.aplicarEfecto(turnoActual);
-        
-        // Comprobar si hay un ganador
-        if (comprobarGanador(turnoActual)) {
-            System.out.println(turnoActual.getNombre() + " ha ganado el juego!");
-        } else {
-            cambiarTurno();
-        }
+    		// Comprobar casilla
+    		Casilla casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
+    		casilla.aplicarEfecto(turnoActual);
+    
+    		// Comprobar si hay un ganador
+    		if (comprobarGanador(turnoActual)) {
+    		System.out.println(turnoActual.getNombre() + " ha ganado el juego!");
+    		} else {
+    			cambiarTurno();
+    		}
+    	}
     }
         
         public void cambiarTurno() {
