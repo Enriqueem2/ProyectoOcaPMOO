@@ -48,6 +48,12 @@ public class Juego {
         public void jugarTurno() {
         System.out.println(turnoActual.getNombre() + " es tu turno.");
 
+        if(turnoActual.getTurnosPorPerder() > 0) {
+        	turnoActual.reducirTurnosPorPerder();
+        	cambiarTurno();
+        	System.out.println("Todavía te quedan turnos por perder");
+        }
+        
         // El jugador tira el dado y avanza
         turnoActual.tirarDado();
         
