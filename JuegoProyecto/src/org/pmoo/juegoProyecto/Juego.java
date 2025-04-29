@@ -22,16 +22,19 @@ public class Juego {
         return listaJugadores;
 	}
 
-    public void iniciarJuego(int numJugadores) {
+    public void jugarPartida() {
+    	int pNumJugadores = Teclado.getTeclado().leerNumeroJugadores();
+        iniciarJuego(pNumJugadores); 
+    }
+    
+    public void iniciarJuego(int pNumJugadores) {
     	
     	int i = 0;
-        while (i<numJugadores) {
+        while (i<pNumJugadores) {
         	
         	i=i+1;
-            String nombre = "Jugador " + (i + 1);
-            String color = "Color " + (i + 1);
-            
-            Jugador jugador = new Jugador(nombre, color);
+            String pNombre = Teclado.getTeclado().leerString("Escribe tu nombre: ");
+            Jugador jugador = new Jugador (pNombre);
             listaJugadores.add(jugador);
             
         }

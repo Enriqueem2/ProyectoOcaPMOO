@@ -2,14 +2,12 @@ package org.pmoo.juegoProyecto;
 public class Jugador {
 
 	private String nom;
-	private String color;
 	private int posCasilla;
 	private int turnosPorPerder;
 	private int num;
 
-public Jugador (String pNom, String pColor) {
+public Jugador (String pNom) {
 		this.nom = pNom;	
-		this.color = pColor;
 		this.posCasilla = 1;
 		this.turnosPorPerder = 0;
 	}
