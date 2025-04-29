@@ -35,10 +35,10 @@ public Jugador (String pNom) {
 		if (this.posCasilla + num == 63) {
 			System.out.println("Ha salido un " + num);
 			this.avanzar();
-			System.out.println("ï¿½Has llegado justo a la meta!");
+			System.out.println("¡Has llegado justo a la meta!");
 		} else if (this.posCasilla + num > 63) {
 			System.out.println("Ha salido un " + num);
-			System.out.println("ï¿½Te pasaste! Necesitas sacar el nï¿½mero exacto para ganar.");
+			System.out.println("¡Te pasaste! Necesitas sacar el número exacto para ganar.");
 			// No se mueve
 		} else {
 			System.out.println("Ha salido un " + num);
