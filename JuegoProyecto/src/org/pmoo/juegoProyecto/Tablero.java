@@ -16,13 +16,13 @@
 			}
 			return miTablero;
 		}
-	    
-	    public ArrayList<Casilla> getListaCasillas() {
-	        return listaCasillas;
-	    }
+	  
 	    
 	    public Casilla getCasilla(int numCasilla) {
-	        return listaCasillas.get(numCasilla);
+	        if (numCasilla >= 0 && numCasilla < listaCasillas.size()) {
+	            return listaCasillas.get(numCasilla);
+	        }
+	        return null;
 	    }
 	    
 	    public void inicializarCasillas() {
@@ -65,13 +65,21 @@
 	
 	    public int buscarSiguienteOca(int posActual) {
 	        int[] ocas = {5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59, 63};
-	
+
 	        for (int i = 0; i < ocas.length - 1; i++) {
 	            if (ocas[i] == posActual) {
 	                return ocas[i + 1];
 	            }
 	        }
-	
 	        return posActual; // si no hay siguiente oca, se queda en la misma
 	    }
+
+	    public boolean esCasillaOca(int posicion) {
+	        int[] ocas = {5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59};
+	        for (int oca : ocas) {
+	            if (oca == posicion) return true;
+	        }
+	        return false;
+	    }
+
 	}

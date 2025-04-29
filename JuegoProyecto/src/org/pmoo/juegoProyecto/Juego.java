@@ -45,7 +45,10 @@ public class Juego {
     }
  
         public void jugarTurno() {
+        System.out.println(); // Línea en blanco antes del turno	
         System.out.println(turnoActual.getNombre() + " es tu turno.");
+        Teclado.getTeclado().leerString("Pulsa Intro para lanzar el dado...");
+        System.out.println();
         if(turnoActual.getTurnosPorPerder()>0) {
     		if(this.turnoActual.getTurnosPorPerder() ==1) {
     			System.out.println("Puedes volver a tirar en el siguiente turno");
@@ -62,7 +65,15 @@ public class Juego {
     		// Comprobar casilla
     		Casilla casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
     		casilla.aplicarEfecto(turnoActual);
-    
+    		while (Tablero.getTablero().esCasillaOca(turnoActual.getPosicion())) {
+    		    int nuevaPos = Tablero.getTablero().buscarSiguienteOca(turnoActual.getPosicion());
+    		    turnoActual.setPosicion(nuevaPos);
+    		    System.out.println("¡De oca a oca! Avanzas a la casilla " + nuevaPos);
+
+    		    Teclado.getTeclado().leerString("¡Vuelves a tirar! Pulsa Intro para lanzar el dado...");
+    		    turnoActual.tirarDado();
+    		    System.out.println("Estás en la posición " + turnoActual.getPosicion());
+    		}
     		// Comprobar si hay un ganador
     		if (comprobarGanador(turnoActual)) {
     		System.out.println(turnoActual.getNombre() + " ha ganado el juego!");
@@ -70,9 +81,10 @@ public class Juego {
     			cambiarTurno();
     		}
     	}
-    }
+    	System.out.println("-----------------------------"); //Separador entre turnos (para que no se mezcle tanto texto)
+   }
         
-        public void cambiarTurno() {
+        private void cambiarTurno() {
 
         	int i = listaJugadores.indexOf(turnoActual);
             
@@ -84,7 +96,7 @@ public class Juego {
             }
         }
 
-        public boolean comprobarGanador(Jugador pJugador) {
+        private boolean comprobarGanador(Jugador pJugador) {
             if(pJugador.getPosicion() == 63) {
             	return true;
             } else { return false;
