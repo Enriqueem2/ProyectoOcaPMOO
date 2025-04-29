@@ -53,7 +53,7 @@ public class Juego {
     		if(this.turnoActual.getTurnosPorPerder() ==1) {
     			System.out.println("Puedes volver a tirar en el siguiente turno");
     		}else {
-    			System.out.println("Puedes volver a tirar en "+(this.turnoActual.getTurnosPorPerder()-1)+" turnos");
+    			System.out.println("Puedes volver a tirar en "+(this.turnoActual.getTurnosPorPerder())+" turnos");
     		}
     		turnoActual.reducirTurnosPorPerder();
     		cambiarTurno();
@@ -63,14 +63,16 @@ public class Juego {
     		
 
     		// Comprobar casilla
-    		Casilla casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
+    		CasillaNormal casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
     		casilla.aplicarEfecto(turnoActual);
     		while (Tablero.getTablero().esCasillaOca(turnoActual.getPosicion())) {
     		    int nuevaPos = Tablero.getTablero().buscarSiguienteOca(turnoActual.getPosicion());
     		    turnoActual.setPosicion(nuevaPos);
+    		    System.out.println();
     		    System.out.println("¡De oca a oca! Avanzas a la casilla " + nuevaPos);
 
     		    Teclado.getTeclado().leerString("¡Vuelves a tirar! Pulsa Intro para lanzar el dado...");
+    		    System.out.println();
     		    turnoActual.tirarDado();
     		    System.out.println("Estás en la posición " + turnoActual.getPosicion());
     		}

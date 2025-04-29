@@ -1,14 +1,13 @@
 package org.pmoo.juegoProyecto;
 
-public class CasillaMuerte extends Casilla {
+public class CasillaMuerte extends CasillaNormal {
 public CasillaMuerte (int pNumCasilla) {
 	super(pNumCasilla);
 }
 
 @Override
 public void aplicarEfecto(Jugador pJugador) {
-    // No hace nada
+	System.out.println("Has caido en la casilla Muerte y vuelves al principio");
 	pJugador.setPosicion(1);
-	System.out.println("El jugador"+ pJugador.getNombre()+"Ha caido en la casilla Muerte y vuelve al principio");
 	}
 }

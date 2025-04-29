@@ -1,8 +1,9 @@
 package org.pmoo.juegoProyecto;
 
-public class CasillaNormal extends Casilla {
+public class CasillaNormal {
+	private int numCasilla;
 	public CasillaNormal(int pNumCasilla) {
-        super(pNumCasilla);
+		this.numCasilla = pNumCasilla;
     }
 
     public void aplicarEfecto(Jugador pJugador) {

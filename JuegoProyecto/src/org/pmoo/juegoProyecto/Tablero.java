@@ -3,11 +3,11 @@
 	
 	public class Tablero {
 	
-		private ArrayList<Casilla> listaCasillas;
+		private ArrayList<CasillaNormal> listaCasillas;
 		private static Tablero miTablero = null;
 		
 	    private Tablero() {
-	        listaCasillas = new ArrayList<Casilla>();
+	        listaCasillas = new ArrayList<CasillaNormal>();
 	    }
 	
 	    public static Tablero getTablero() {
@@ -18,7 +18,7 @@
 		}
 	  
 	    
-	    public Casilla getCasilla(int numCasilla) {
+	    public CasillaNormal getCasilla(int numCasilla) {
 	        if (numCasilla >= 0 && numCasilla < listaCasillas.size()) {
 	            return listaCasillas.get(numCasilla);
 	        }
@@ -29,15 +29,6 @@
 	        for (int i = 0; i < 63; i++) {
 	            listaCasillas.add(new CasillaNormal(i));
 	        }
-	
-	        // Ocas
-	        int[] ocas = {5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59};
-	        for (int i = 0; i < ocas.length - 1; i++) {
-	            int origen = ocas[i];
-	            int destino = ocas[i + 1];
-	            listaCasillas.set(origen, new CasillaMover(origen, destino, false));
-	        }
-	        // Última oca (59) no mueve a ninguna otra
 	
 	        // Puentes
 	        listaCasillas.set(6, new CasillaMover(6, 12, false)); // primer puente

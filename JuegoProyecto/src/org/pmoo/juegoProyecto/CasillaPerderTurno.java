@@ -1,5 +1,5 @@
 package org.pmoo.juegoProyecto;
-public class CasillaPerderTurno extends Casilla{
+public class CasillaPerderTurno extends CasillaNormal{
 	
 	private int turnosPerdidos;
 
