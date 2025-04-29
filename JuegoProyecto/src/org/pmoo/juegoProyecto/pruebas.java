@@ -1,4 +1,4 @@
-package org.pmoo.juegoProyecto;
+package org.pmoo.juegoProyecto; //probar metodos
 
 public class pruebas {
 	public static void main(String[] args) {
@@ -11,4 +11,5 @@ public class pruebas {
 	        // Tal vez agregar opción de salir o esperar input
 	    }
 	}
+	
 }
