@@ -1,6 +1,5 @@
 package org.pmoo.juegoProyecto;
 import java.util.ArrayList;
-
 public class Juego {
 	public static void main(String[] args) {}
 	
@@ -53,35 +52,15 @@ public class Juego {
         turnoActual = listaJugadores.get(0);  
         
     }
-
+ 
+    
     public boolean jugarTurno() {
         System.out.println();
         System.out.println(turnoActual.getNombre() + " es tu turno.");
         Teclado.getTeclado().leerString("Pulsa Intro para lanzar el dado...");
         System.out.println();
-        
-        if(turnoActual.getTurnosPorPerder()>0) {
-    		if(this.turnoActual.getTurnosPorPerder() ==1) {
-    			System.out.println("Puedes volver a tirar en el siguiente turno");
-    		}else {
-    			System.out.println("Puedes volver a tirar en "+(this.turnoActual.getTurnosPorPerder())+" turnos");
-    		}
-    		turnoActual.reducirTurnosPorPerder();
-    		cambiarTurno();
-    	}else {
-    		turnoActual.tirarDado();
-    		System.out.println("Estï¿½s en la posiciï¿½n " + turnoActual.getPosicion());
-    		
-    		// Comprobar casilla
-    		CasillaNormal casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
-    		casilla.aplicarEfecto(turnoActual);
-    		while (Tablero.getTablero().esCasillaOca(turnoActual.getPosicion())) {
-    		    int nuevaPos = Tablero.getTablero().buscarSiguienteOca(turnoActual.getPosicion());
-    		    turnoActual.setPosicion(nuevaPos);
-    		    System.out.println();
-    		    System.out.println("ï¿½De oca a oca! Avanzas a la casilla " + nuevaPos);
 
-    	if (turnoActual.getTurnosPorPerder() > 0) {
+        if (turnoActual.getTurnosPorPerder() > 0) {
             if (turnoActual.getTurnosPorPerder() == 1) {
                 System.out.println("Puedes volver a tirar en el siguiente turno");
             } else {
@@ -92,42 +71,30 @@ public class Juego {
             return false;
         }
 
-    		    Teclado.getTeclado().leerString("ï¿½Vuelves a tirar! Pulsa Intro para lanzar el dado...");
-    		    System.out.println();
-    		    turnoActual.tirarDado();
-    		    System.out.println("Estï¿½s en la posiciï¿½n " + turnoActual.getPosicion());
-    		}
-    		
-    		// Comprobar si hay un ganador
-    		if (comprobarGanador(turnoActual)) {
-    		System.out.println(turnoActual.getNombre() + " ha ganado el juego!");
-    		} else {
-    			cambiarTurno();
-    		}
-    	}
-    	System.out.println("-----------------------------"); //Separador entre turnos (para que no se mezcle tanto texto)
-    
-
-         
+        turnoActual.tirarDado();
+        System.out.println("Estás en la posición " + turnoActual.getPosicion());
+        this.dibujarTableroConJugadores(listaJugadores);
+        
+        // Comprobar casilla
+        CasillaNormal casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
+        casilla.aplicarEfecto(turnoActual);
 
         while (Tablero.getTablero().esCasillaOca(turnoActual.getPosicion())) {
             int nuevaPos = Tablero.getTablero().buscarSiguienteOca(turnoActual.getPosicion());
             turnoActual.setPosicion(nuevaPos);
             System.out.println();
-            System.out.println("ï¿½De oca a oca! Avanzas a la casilla " + nuevaPos);
+            System.out.println("¡De oca a oca! Avanzas a la casilla " + nuevaPos);
 
             if (nuevaPos == 63) {
             	this.dibujarTableroConJugadores(listaJugadores);
-                break;
-            }
+                return true; //termina la partida
+            }else {
 
-            Teclado.getTeclado().leerString("ï¿½Vuelves a tirar! Pulsa Intro para lanzar el dado...");
+            Teclado.getTeclado().leerString("¡Vuelves a tirar! Pulsa Intro para lanzar el dado...");
             System.out.println();
             turnoActual.tirarDado();
-            System.out.println("Estï¿½s en la posiciï¿½n " + turnoActual.getPosicion());
-            
+            System.out.println("Estás en la posición " + turnoActual.getPosicion());
         }
-
         // Comprobar si ha ganado
         if (comprobarGanador(turnoActual)) {
             System.out.println(turnoActual.getNombre() + " ha ganado el juego!");
@@ -138,7 +105,7 @@ public class Juego {
             return false;
         }
     }
-
+}
         
         private void cambiarTurno() {
 
@@ -188,19 +155,19 @@ public class Juego {
 
             // Dibujar el tablero con jugadores
             for (int fila = 0; fila < pFilas; fila++) {
-                // Lï¿½nea superior
+                // Línea superior
                 for (int col = 0; col < pColumnas; col++) {
                     System.out.print("+---------");
                 }
                 System.out.println("+");
 
-                // Lï¿½nea vacï¿½a
+                // Línea vacía
                 for (int col = 0; col < pColumnas; col++) {
                     System.out.print("|         ");
                 }
                 System.out.println("|");
 
-             // Lï¿½nea con nï¿½mero o iniciales de jugadores
+             // Línea con número o iniciales de jugadores
                 for (int col = 0; col < pColumnas; col++) {
                     int casilla = tablero[fila][col];
                     
@@ -219,7 +186,7 @@ public class Juego {
                         if (iniciales.length() > 0) {
                             contenido = iniciales.toString();  // Mostrar iniciales si hay jugadores
                         } else {
-                            contenido = String.valueOf(casilla); // Mostrar nï¿½mero de casilla si no hay jugadores
+                            contenido = String.valueOf(casilla); // Mostrar número de casilla si no hay jugadores
                         }
 
                         // Centrado dentro de 9 espacios
@@ -235,14 +202,14 @@ public class Juego {
                 System.out.println("|");
 
 
-                // Lï¿½nea vacï¿½a inferior
+                // Línea vacía inferior
                 for (int col = 0; col < pColumnas; col++) {
                     System.out.print("|         ");
                 }
                 System.out.println("|");
             }
 
-            // Lï¿½nea inferior final
+            // Línea inferior final
             for (int col = 0; col < pColumnas; col++) {
                 System.out.print("+---------");
             }
