@@ -77,8 +77,11 @@ public class Juego {
         
         // Comprobar casilla
         
-    	CasillaNormal casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
-        casilla.aplicarEfecto(turnoActual);
+        	CasillaNormal casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
+        	if(casilla != null) {
+        	casilla.aplicarEfecto(turnoActual);
+        	}
+        
         
         int seguridad = 0; // Casuistica para evitar que haya un bucle infinito en la casilla oca 59, porque si no llega exactamente a la 63 se queda en el mismo sitio y así solo se repite una vez el bucle
         while (Tablero.getTablero().esCasillaOca(turnoActual.getPosicion()) && seguridad == 0) {

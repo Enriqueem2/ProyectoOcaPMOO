@@ -20,7 +20,7 @@
 	    
 	    public CasillaNormal getCasilla(int numCasilla) {
 	        if (numCasilla >= 0 && numCasilla < listaCasillas.size()) {
-	            return listaCasillas.get(numCasilla);
+	            return listaCasillas.get(numCasilla - 1); //ajustado para que en el indice la casilla numero 1 sea la 0 en el indice
 	        }
 	        return null;
 	    }
