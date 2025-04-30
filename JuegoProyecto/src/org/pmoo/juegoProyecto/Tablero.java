@@ -26,7 +26,7 @@
 	    }
 	    
 	    public void inicializarCasillas() {
-	        for (int i = 0; i < 63; i++) {
+	        for (int i = 1; i <= 63; i++) {
 	            listaCasillas.add(new CasillaNormal(i));
 	        }
 	
@@ -55,7 +55,7 @@
 	    }
 	
 	    public int buscarSiguienteOca(int posActual) {
-	        int[] ocas = {5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59, 63};
+	        int[] ocas = {5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59};
 
 	        for (int i = 0; i < ocas.length - 1; i++) {
 	            if (ocas[i] == posActual) {

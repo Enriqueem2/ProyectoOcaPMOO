@@ -28,12 +28,12 @@ public class Juego {
         
         boolean fin = false;
         while (!fin) {
-            this.dibujarTableroConJugadores(listaJugadores); // Dibujar en cada turno
             fin = jugarTurno(); // Si devuelve true, termina
+       
         }
     }
     
-    public void iniciarJuego(int pNumJugadores) {
+    private void iniciarJuego(int pNumJugadores) {
     	
     	int i = 0;
         while (i<pNumJugadores) {
@@ -76,24 +76,28 @@ public class Juego {
         this.dibujarTableroConJugadores(listaJugadores);
         
         // Comprobar casilla
-        CasillaNormal casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
+        
+    	CasillaNormal casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
         casilla.aplicarEfecto(turnoActual);
-
-        while (Tablero.getTablero().esCasillaOca(turnoActual.getPosicion())) {
-            int nuevaPos = Tablero.getTablero().buscarSiguienteOca(turnoActual.getPosicion());
+        
+        int seguridad = 0; // Casuistica para evitar que haya un bucle infinito en la casilla oca 59, porque si no llega exactamente a la 63 se queda en el mismo sitio y así solo se repite una vez el bucle
+        while (Tablero.getTablero().esCasillaOca(turnoActual.getPosicion()) && seguridad == 0) {
+        if(turnoActual.getPosicion() == 59) {  
+        	seguridad++;
+        	break;
+        }else {
+        	int nuevaPos = Tablero.getTablero().buscarSiguienteOca(turnoActual.getPosicion());
             turnoActual.setPosicion(nuevaPos);
             System.out.println();
             System.out.println("¡De oca a oca! Avanzas a la casilla " + nuevaPos);
-
-            if (nuevaPos == 63) {
-            	this.dibujarTableroConJugadores(listaJugadores);
-                return true; //termina la partida
-            }else {
-
             Teclado.getTeclado().leerString("¡Vuelves a tirar! Pulsa Intro para lanzar el dado...");
+            Teclado.getTeclado().leerString("Pulsa Intro para lanzar el dado...");
+            System.out.println();
             System.out.println();
             turnoActual.tirarDado();
             System.out.println("Estás en la posición " + turnoActual.getPosicion());
+            this.dibujarTableroConJugadores(listaJugadores);
+        }
         }
         // Comprobar si ha ganado
         if (comprobarGanador(turnoActual)) {
@@ -105,7 +109,7 @@ public class Juego {
             return false;
         }
     }
-}
+
         
         private void cambiarTurno() {
 

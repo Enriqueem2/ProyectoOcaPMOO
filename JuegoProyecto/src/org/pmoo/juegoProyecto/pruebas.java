@@ -5,6 +5,7 @@ public class pruebas {
 		Juego juego = Juego.getJuego();
         juego.jugarPartida(); 
         while(true) {
+        
         juego.jugarTurno();
         }
 		
