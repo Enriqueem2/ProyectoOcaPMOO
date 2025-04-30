@@ -53,12 +53,13 @@ public class Juego {
         turnoActual = listaJugadores.get(0);  
         
     }
- 
+
     public boolean jugarTurno() {
         System.out.println();
         System.out.println(turnoActual.getNombre() + " es tu turno.");
         Teclado.getTeclado().leerString("Pulsa Intro para lanzar el dado...");
         System.out.println();
+        
         if(turnoActual.getTurnosPorPerder()>0) {
     		if(this.turnoActual.getTurnosPorPerder() ==1) {
     			System.out.println("Puedes volver a tirar en el siguiente turno");
@@ -96,6 +97,7 @@ public class Juego {
     		    turnoActual.tirarDado();
     		    System.out.println("Est�s en la posici�n " + turnoActual.getPosicion());
     		}
+    		
     		// Comprobar si hay un ganador
     		if (comprobarGanador(turnoActual)) {
     		System.out.println(turnoActual.getNombre() + " ha ganado el juego!");
@@ -123,8 +125,7 @@ public class Juego {
             System.out.println();
             turnoActual.tirarDado();
             System.out.println("Est�s en la posici�n " + turnoActual.getPosicion());
-            casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
-            casilla.aplicarEfecto(turnoActual);
+            
         }
 
         // Comprobar si ha ganado
