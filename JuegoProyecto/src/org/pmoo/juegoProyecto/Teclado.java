@@ -26,8 +26,8 @@ public class Teclado {
         return numero;
     }
     
-    public String leerString(String mensaje) {
-        System.out.print(mensaje);
+    public String leerString(String pMensaje) {
+        System.out.print(pMensaje);
         return sc.nextLine();
     }
     
@@ -39,7 +39,6 @@ public class Teclado {
         	System.out.println(); // L�nea en blanco para hacer espacio
             System.out.print("Introduce el n�mero de jugadores (entre 1 y 5): ");
             numJugadores = leerEntero();  
-
             if (numJugadores >= 2 && numJugadores <= 5) {
                 valido = true;
             } else {
