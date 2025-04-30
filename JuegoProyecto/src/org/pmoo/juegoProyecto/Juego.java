@@ -37,12 +37,14 @@ public class Juego {
     	
     	int i = 0;
         while (i<pNumJugadores) {
-        	
-        	i=i+1;
-            String pNombre = Teclado.getTeclado().leerString("Escribe tu nombre: ");
-            Jugador jugador = new Jugador (pNombre);
-            listaJugadores.add(jugador);
-            
+        	try {
+                String pNombre = Teclado.getTeclado().leerNombre("Escribe tu nombre: ");
+                Jugador jugador = new Jugador(pNombre);
+                listaJugadores.add(jugador);
+                i++; // Solo si el nombre es válido
+            } catch (NombreInvalidoException e) {
+                System.out.println("Error: " + e.getMessage() + " Intentalo de nuevo."); //Bibliografia de getMessage-->https://stackoverflow.com/questions/32840399/printing-exception-vs-exception-getmessage
+            }
         }
 
         // Inicializar casillas

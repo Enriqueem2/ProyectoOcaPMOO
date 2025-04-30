@@ -25,9 +25,19 @@ public class Teclado {
         sc.nextLine(); // salta de linea
         return numero;
     }
-    public String leerString(String pMensaje) {
+    
+    public String leerString(String pMensaje) { //uso general para dados y turnos
         System.out.print(pMensaje);
         return sc.nextLine();
+    }
+    
+    public String leerNombre(String pMensaje) throws NombreInvalidoException  { //uso exclusivo para nombres
+        System.out.print(pMensaje);
+        String entrada = sc.nextLine();
+        if (entrada.trim().isEmpty()) { /*Trim es para quitar espacios en blanco y isEmpty para ver si esta vacio despues del trim, bibliografia -->https://stackoverflow.com/questions/5819800/whats-the-better-way-to-check-if-a-string-is-empty-than-using-string-trim-len */
+            throw new NombreInvalidoException("El nombre no puede estar vacío o contener solo espacios.");
+        }
+        return entrada;
     }
     public int leerNumeroJugadores() {
         int numJugadores = 0;
