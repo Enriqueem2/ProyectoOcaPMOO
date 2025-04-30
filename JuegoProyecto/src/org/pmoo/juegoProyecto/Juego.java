@@ -1,5 +1,6 @@
 package org.pmoo.juegoProyecto;
 import java.util.ArrayList;
+
 public class Juego {
 	public static void main(String[] args) {}
 	
@@ -45,7 +46,7 @@ public class Juego {
     }
  
         public void jugarTurno() {
-        System.out.println(); // Línea en blanco antes del turno	
+        System.out.println(); // Lï¿½nea en blanco antes del turno	
         System.out.println(turnoActual.getNombre() + " es tu turno.");
         Teclado.getTeclado().leerString("Pulsa Intro para lanzar el dado...");
         System.out.println();
@@ -59,7 +60,7 @@ public class Juego {
     		cambiarTurno();
     	}else {
     		turnoActual.tirarDado();
-    		System.out.println("Estás en la posición " + turnoActual.getPosicion());
+    		System.out.println("Estï¿½s en la posiciï¿½n " + turnoActual.getPosicion());
     		
 
     		// Comprobar casilla
@@ -69,12 +70,12 @@ public class Juego {
     		    int nuevaPos = Tablero.getTablero().buscarSiguienteOca(turnoActual.getPosicion());
     		    turnoActual.setPosicion(nuevaPos);
     		    System.out.println();
-    		    System.out.println("¡De oca a oca! Avanzas a la casilla " + nuevaPos);
+    		    System.out.println("ï¿½De oca a oca! Avanzas a la casilla " + nuevaPos);
 
-    		    Teclado.getTeclado().leerString("¡Vuelves a tirar! Pulsa Intro para lanzar el dado...");
+    		    Teclado.getTeclado().leerString("ï¿½Vuelves a tirar! Pulsa Intro para lanzar el dado...");
     		    System.out.println();
     		    turnoActual.tirarDado();
-    		    System.out.println("Estás en la posición " + turnoActual.getPosicion());
+    		    System.out.println("Estï¿½s en la posiciï¿½n " + turnoActual.getPosicion());
     		}
     		// Comprobar si hay un ganador
     		if (comprobarGanador(turnoActual)) {
