@@ -53,6 +53,7 @@ public class Juego {
         
     }
  
+    
     public boolean jugarTurno() {
         System.out.println();
         System.out.println(turnoActual.getNombre() + " es tu turno.");
