@@ -33,6 +33,11 @@ public class Juego {
         }
     }
     
+    private void añadirJugador(Jugador pJugador) {
+        listaJugadores.add(pJugador);
+    }
+    
+    
     private void iniciarJuego(int pNumJugadores) {
     	
     	int i = 0;
@@ -40,7 +45,7 @@ public class Juego {
         	try {
                 String pNombre = Teclado.getTeclado().leerNombre("Escribe tu nombre: ");
                 Jugador jugador = new Jugador(pNombre);
-                listaJugadores.add(jugador);
+                añadirJugador(jugador);
                 i++; // Solo si el nombre es válido
             } catch (NombreInvalidoException e) {
                 System.out.println("Error: " + e.getMessage() + " Intentalo de nuevo."); //Bibliografia de getMessage-->https://stackoverflow.com/questions/32840399/printing-exception-vs-exception-getmessage
