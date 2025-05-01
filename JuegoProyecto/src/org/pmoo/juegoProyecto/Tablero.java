@@ -18,15 +18,15 @@
 		}
 	  
 	    
-	    public CasillaNormal getCasilla(int numCasilla) {
-	        if (numCasilla >= 0 && numCasilla < listaCasillas.size()) {
-	            return listaCasillas.get(numCasilla - 1); //ajustado para que en el indice la casilla numero 1 sea la 0 en el indice
+	    public CasillaNormal getCasilla(int pNumCasilla) {
+	        if (pNumCasilla >= 0 && pNumCasilla < listaCasillas.size()) {
+	            return listaCasillas.get(pNumCasilla ); 
 	        }
 	        return null;
 	    }
 	    
 	    public void inicializarCasillas() {
-	        for (int i = 1; i <= 63; i++) {
+	        for (int i = 0; i <= 63; i++) {
 	            listaCasillas.add(new CasillaNormal(i));
 	        }
 	
@@ -54,21 +54,21 @@
 	        listaCasillas.set(58, new CasillaMuerte(58));
 	    }
 	
-	    public int buscarSiguienteOca(int posActual) {
+	    public int buscarSiguienteOca(int pPosActual) {
 	        int[] ocas = {5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59};
 
 	        for (int i = 0; i < ocas.length - 1; i++) {
-	            if (ocas[i] == posActual) {
+	            if (ocas[i] == pPosActual) {
 	                return ocas[i + 1];
 	            }
 	        }
-	        return posActual; // si no hay siguiente oca, se queda en la misma
+	        return pPosActual; // si no hay siguiente oca, se queda en la misma
 	    }
 
-	    public boolean esCasillaOca(int posicion) {
+	    public boolean esCasillaOca(int pPosicion) {
 	        int[] ocas = {5, 9, 14, 18, 23, 27, 32, 36, 41, 45, 50, 54, 59};
 	        for (int oca : ocas) {
-	            if (oca == posicion) return true;
+	            if (oca == pPosicion) return true;
 	        }
 	        return false;
 	    }

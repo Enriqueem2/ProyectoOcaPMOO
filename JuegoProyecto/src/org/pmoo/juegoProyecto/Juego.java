@@ -1,7 +1,10 @@
 package org.pmoo.juegoProyecto;
 import java.util.ArrayList;
 public class Juego {
-	public static void main(String[] args) {}
+	public static void main(String[] args) {
+		Juego juego = Juego.getJuego();
+        juego.jugarPartida(); 
+	}
 	
  	private ArrayList<Jugador> listaJugadores;
 	private static Juego miJuego = null;
@@ -11,18 +14,15 @@ public class Juego {
         listaJugadores = new ArrayList<>();
     }
 
-    public static Juego getJuego() {
+    private static Juego getJuego() {
 		if(miJuego == null) {
 			miJuego = new Juego();
 		}
 		return miJuego;
 	}
-    
-    public ArrayList<Jugador> getListaJugadores() {
-        return listaJugadores;
-	}
 
-    public void jugarPartida() {
+
+    private void jugarPartida() {
     	int pNumJugadores = Teclado.getTeclado().leerNumeroJugadores();
         iniciarJuego(pNumJugadores); 
         
@@ -56,7 +56,7 @@ public class Juego {
     }
  
     
-    public boolean jugarTurno() {
+    private boolean jugarTurno() {
         System.out.println();
         System.out.println(turnoActual.getNombre() + " es tu turno.");
         Teclado.getTeclado().leerString("Pulsa Intro para lanzar el dado...");
@@ -74,14 +74,13 @@ public class Juego {
         }
 
         turnoActual.tirarDado();
-        System.out.println("Estás en la posición " + turnoActual.getPosicion());
-        this.dibujarTableroConJugadores(listaJugadores);
-        
+        System.out.println("Estás en la posición " + turnoActual.getPosicion());        
         // Comprobar casilla
         
         	CasillaNormal casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
         	if(casilla != null) {
         	casilla.aplicarEfecto(turnoActual);
+            this.dibujarTableroConJugadores(listaJugadores);
         	}
         
         
@@ -95,8 +94,8 @@ public class Juego {
             turnoActual.setPosicion(nuevaPos);
             System.out.println();
             System.out.println("¡De oca a oca! Avanzas a la casilla " + nuevaPos);
+            this.dibujarTableroConJugadores(listaJugadores);
             Teclado.getTeclado().leerString("¡Vuelves a tirar! Pulsa Intro para lanzar el dado...");
-            Teclado.getTeclado().leerString("Pulsa Intro para lanzar el dado...");
             System.out.println();
             System.out.println();
             turnoActual.tirarDado();
@@ -110,7 +109,7 @@ public class Juego {
             return true; //  TERMINA LA PARTIDA
         } else {
             cambiarTurno();
-            System.out.println("-----------------------------");
+
             return false;
         }
     }
@@ -135,7 +134,7 @@ public class Juego {
             	}
         }
         
-        private void dibujarTableroConJugadores(ArrayList<Jugador> jugadores) {
+        private void dibujarTableroConJugadores(ArrayList<Jugador> pJugadores) {
             int pFilas = 8;
             int pColumnas = 8;
             int[][] tablero = new int[pFilas][pColumnas];
@@ -185,7 +184,7 @@ public class Juego {
                     } else {
                         // Recoger iniciales de jugadores en esta casilla
                         StringBuilder iniciales = new StringBuilder();
-                        for (Jugador j : jugadores) {
+                        for (Jugador j : pJugadores) {
                             if (j.getPosicion() == casilla) {
                                 iniciales.append(Character.toUpperCase(j.getNombre().charAt(0)));
                             }
