@@ -69,6 +69,7 @@ public class Juego {
                 System.out.println("Puedes volver a tirar en " + turnoActual.getTurnosPorPerder() + " turnos");
             }
             turnoActual.reducirTurnosPorPerder();
+            this.dibujarTableroConJugadores(listaJugadores);
             cambiarTurno();
             return false;
         }
@@ -84,7 +85,7 @@ public class Juego {
         	}
         
         
-        int seguridad = 0; // Casuistica para evitar que haya un bucle infinito en la casilla oca 59, porque si no llega exactamente a la 63 se queda en el mismo sitio y así solo se repite una vez el bucle
+        int seguridad = 0; // Casuistica para evitar que haya un bucle infinito en la casilla oca 59, porque si no llega exactamente a la 63 se queda en el mismo sitio y así el bucle solo se repite una vez
         while (Tablero.getTablero().esCasillaOca(turnoActual.getPosicion()) && seguridad == 0) {
         if(turnoActual.getPosicion() == 59) {  
         	seguridad++;

@@ -19,7 +19,7 @@ public class CasillaPerderTurno extends CasillaNormal{
         	System.out.println(" Has caido en el Pozo, pierdes 2 turnos ");
         }else if(pJugador.getPosicion() ==42) {
         	System.out.println(" Has caido en el Laberinto, pierdes 3 turnos ");
-        }else if(pJugador.getPosicion() ==54) {
+        }else if(pJugador.getPosicion() ==52) {
         	System.out.println(" Has caido en la Carcel, pierdes 4 turnos ");
         }
     }
