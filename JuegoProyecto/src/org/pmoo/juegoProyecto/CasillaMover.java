@@ -15,8 +15,11 @@ public class CasillaMover extends CasillaNormal{
 	        pJugador.setPosicion(destino);
 	        if (volverATirar) {  
 	            System.out.println("¡Tiras de nuevo!");
+	            System.out.println();
+	            Teclado.getTeclado().leerString("Pulsa Intro para lanzar el dado...");
+	            System.out.println();
 	            pJugador.tirarDado();
-	            System.out.println("Estás es na posición " +pJugador.getPosicion());
+	            System.out.println("Estás es la posición " +pJugador.getPosicion());
 	        }   
 	    }
 }
