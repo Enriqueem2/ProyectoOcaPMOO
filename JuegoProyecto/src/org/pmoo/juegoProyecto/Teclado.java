@@ -39,6 +39,7 @@ public class Teclado {
         }
         return entrada;
     }
+    
     public int leerNumeroJugadores() {
         int numJugadores = 0;
         boolean valido = false;
