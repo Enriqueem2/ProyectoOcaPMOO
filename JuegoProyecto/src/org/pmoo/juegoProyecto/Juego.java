@@ -14,7 +14,7 @@ public class Juego {
         listaJugadores = new ArrayList<>();
     }
 
-    private static Juego getJuego() {
+    public static Juego getJuego() {
 		if(miJuego == null) {
 			miJuego = new Juego();
 		}
