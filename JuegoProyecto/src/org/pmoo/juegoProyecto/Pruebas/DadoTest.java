@@ -1,10 +1,11 @@
-package org.pmoo.juegoProyecto;
+package org.pmoo.juegoProyecto.Pruebas;
 
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.pmoo.juegoProyecto.Dado;
 
 public class DadoTest {
 

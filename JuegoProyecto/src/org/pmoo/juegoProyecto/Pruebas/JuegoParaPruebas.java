@@ -1,28 +1,35 @@
-package org.pmoo.juegoProyecto;
+package org.pmoo.juegoProyecto.Pruebas;
 import java.util.ArrayList;
-public class Juego {
+
+import org.pmoo.juegoProyecto.CasillaNormal;
+import org.pmoo.juegoProyecto.Jugador;
+import org.pmoo.juegoProyecto.NombreInvalidoException;
+import org.pmoo.juegoProyecto.Tablero;
+import org.pmoo.juegoProyecto.Teclado;
+public class JuegoParaPruebas {
+	
 	public static void main(String[] args) {
-		Juego juego = Juego.getJuego();
+		JuegoParaPruebas juego = JuegoParaPruebas.getJuego();
         juego.jugarPartida(); 
 	}
 	
- 	private ArrayList<Jugador> listaJugadores;
-	private static Juego miJuego = null;
-	private Jugador turnoActual;
+ 	private ArrayList<JugadorParaPruebas> listaJugadores;
+	private static JuegoParaPruebas miJuego = null;
+	private JugadorParaPruebas turnoActual;
 	
-    private Juego() {
+    private JuegoParaPruebas() {
         listaJugadores = new ArrayList<>();
     }
 
-    private static Juego getJuego() {
+    public static JuegoParaPruebas getJuego() {
 		if(miJuego == null) {
-			miJuego = new Juego();
+			miJuego = new JuegoParaPruebas();
 		}
 		return miJuego;
 	}
 
 
-    private void jugarPartida() {
+    public void jugarPartida() {
     	int pNumJugadores = Teclado.getTeclado().leerNumeroJugadores();
         iniciarJuego(pNumJugadores); 
         
@@ -33,18 +40,18 @@ public class Juego {
         }
     }
     
-    private void añadirJugador(Jugador pJugador) {
+    public void añadirJugador(JugadorParaPruebas pJugador) {
         listaJugadores.add(pJugador);
     }
     
     
-    private void iniciarJuego(int pNumJugadores) {
+    public void iniciarJuego(int pNumJugadores) {
     	
     	int i = 0;
         while (i<pNumJugadores) {
         	try {
                 String pNombre = Teclado.getTeclado().leerNombre("Escribe tu nombre: ");
-                Jugador jugador = new Jugador(pNombre);
+                JugadorParaPruebas jugador = new JugadorParaPruebas(pNombre);
                 añadirJugador(jugador);
                 i++; // Solo si el nombre es válido
             } catch (NombreInvalidoException e) {
@@ -61,7 +68,7 @@ public class Juego {
     }
  
     
-    private boolean jugarTurno() {
+    public boolean jugarTurno() {
         System.out.println();
         System.out.println(turnoActual.getNombre() + " es tu turno.");
         Teclado.getTeclado().leerString("Pulsa Intro para lanzar el dado...");
@@ -83,7 +90,7 @@ public class Juego {
         System.out.println("Estás en la posición " + turnoActual.getPosicion());        
         // Comprobar casilla
         
-        	CasillaNormal casilla = Tablero.getTablero().getCasilla(turnoActual.getPosicion());
+        	CasillaNormalPruebas casilla = TableroParaPruebas.getTablero().getCasilla(turnoActual.getPosicion());
         	if(casilla != null) {
         	casilla.aplicarEfecto(turnoActual);
             this.dibujarTableroConJugadores(listaJugadores);
@@ -121,7 +128,7 @@ public class Juego {
     }
 
         
-        private void cambiarTurno() {
+    public void cambiarTurno() {
 
         	int i = listaJugadores.indexOf(turnoActual);
             
@@ -133,14 +140,14 @@ public class Juego {
             }
         }
 
-        private boolean comprobarGanador(Jugador pJugador) {
+    public boolean comprobarGanador(JugadorParaPruebas pJugador) {
             if(pJugador.getPosicion() == 63) {
             	return true;
             } else { return false;
             	}
         }
         
-        private void dibujarTableroConJugadores(ArrayList<Jugador> pJugadores) {
+    public void dibujarTableroConJugadores(ArrayList<JugadorParaPruebas> pJugadores) {
             int pFilas = 8;
             int pColumnas = 8;
             int[][] tablero = new int[pFilas][pColumnas];
@@ -190,7 +197,7 @@ public class Juego {
                     } else {
                         // Recoger iniciales de jugadores en esta casilla
                         StringBuilder iniciales = new StringBuilder();
-                        for (Jugador j : pJugadores) {
+                        for (JugadorParaPruebas j : pJugadores) {
                             if (j.getPosicion() == casilla) {
                                 iniciales.append(Character.toUpperCase(j.getNombre().charAt(0)));
                             }
@@ -230,5 +237,5 @@ public class Juego {
             System.out.println("+");
         }
 
-       
-}
+	       
+	}
