@@ -1,27 +1,23 @@
 package org.pmoo.juegoProyecto.Pruebas;
-import java.util.ArrayList;
 
-import org.pmoo.juegoProyecto.CasillaNormal;
-import org.pmoo.juegoProyecto.Jugador;
 import org.pmoo.juegoProyecto.NombreInvalidoException;
-import org.pmoo.juegoProyecto.Tablero;
 import org.pmoo.juegoProyecto.Teclado;
+
 public class JuegoParaPruebas {
-	
 	public static void main(String[] args) {
-		JuegoParaPruebas juego = JuegoParaPruebas.getJuego();
+		JuegoParaPruebas juego = JuegoParaPruebas.getJuegoParaPruebas();
         juego.jugarPartida(); 
 	}
 	
- 	private ArrayList<JugadorParaPruebas> listaJugadores;
+ 	private ListaJugadoresParaPruebas listaJugadores;
 	private static JuegoParaPruebas miJuego = null;
 	private JugadorParaPruebas turnoActual;
 	
-    private JuegoParaPruebas() {
-        listaJugadores = new ArrayList<>();
+    private  JuegoParaPruebas() {
+        listaJugadores = new ListaJugadoresParaPruebas();
     }
 
-    public static JuegoParaPruebas getJuego() {
+    public static JuegoParaPruebas getJuegoParaPruebas() {
 		if(miJuego == null) {
 			miJuego = new JuegoParaPruebas();
 		}
@@ -40,11 +36,6 @@ public class JuegoParaPruebas {
         }
     }
     
-    public void añadirJugador(JugadorParaPruebas pJugador) {
-        listaJugadores.add(pJugador);
-    }
-    
-    
     public void iniciarJuego(int pNumJugadores) {
     	
     	int i = 0;
@@ -52,7 +43,7 @@ public class JuegoParaPruebas {
         	try {
                 String pNombre = Teclado.getTeclado().leerNombre("Escribe tu nombre: ");
                 JugadorParaPruebas jugador = new JugadorParaPruebas(pNombre);
-                añadirJugador(jugador);
+                listaJugadores.añadirJugador(jugador);
                 i++; // Solo si el nombre es válido
             } catch (NombreInvalidoException e) {
                 System.out.println("Error: " + e.getMessage() + " Intentalo de nuevo."); //Bibliografia de getMessage-->https://stackoverflow.com/questions/32840399/printing-exception-vs-exception-getmessage
@@ -60,10 +51,10 @@ public class JuegoParaPruebas {
         }
 
         // Inicializar casillas
-        Tablero.getTablero().inicializarCasillas();
+        TableroParaPruebas.getTablero().inicializarCasillas();
         
         // Elegir el primer jugador
-        turnoActual = listaJugadores.get(0);  
+        turnoActual = listaJugadores.devolverPrimerJugador();  
         
     }
  
@@ -81,7 +72,7 @@ public class JuegoParaPruebas {
                 System.out.println("Puedes volver a tirar en " + turnoActual.getTurnosPorPerder() + " turnos");
             }
             turnoActual.reducirTurnosPorPerder();
-            this.dibujarTableroConJugadores(listaJugadores);
+        	listaJugadores.dibujarTableroConJugadores();
             cambiarTurno();
             return false;
         }
@@ -93,27 +84,27 @@ public class JuegoParaPruebas {
         	CasillaNormalPruebas casilla = TableroParaPruebas.getTablero().getCasilla(turnoActual.getPosicion());
         	if(casilla != null) {
         	casilla.aplicarEfecto(turnoActual);
-            this.dibujarTableroConJugadores(listaJugadores);
+        	listaJugadores.dibujarTableroConJugadores();
         	}
         
         
         int seguridad = 0; // Casuistica para evitar que haya un bucle infinito en la casilla oca 59, porque si no llega exactamente a la 63 se queda en el mismo sitio y así el bucle solo se repite una vez
-        while (Tablero.getTablero().esCasillaOca(turnoActual.getPosicion()) && seguridad == 0) {
+        while (TableroParaPruebas.getTablero().esCasillaOca(turnoActual.getPosicion()) && seguridad == 0) {
         if(turnoActual.getPosicion() == 59) {  
         	seguridad++;
         	break;
         }else {
-        	int nuevaPos = Tablero.getTablero().buscarSiguienteOca(turnoActual.getPosicion());
+        	int nuevaPos = TableroParaPruebas.getTablero().buscarSiguienteOca(turnoActual.getPosicion());
             turnoActual.setPosicion(nuevaPos);
             System.out.println();
             System.out.println("¡De oca a oca! Avanzas a la casilla " + nuevaPos);
-            this.dibujarTableroConJugadores(listaJugadores);
+        	listaJugadores.dibujarTableroConJugadores();
             Teclado.getTeclado().leerString("¡Vuelves a tirar! Pulsa Intro para lanzar el dado...");
             System.out.println();
             System.out.println();
             turnoActual.tirarDado();
             System.out.println("Estás en la posición " + turnoActual.getPosicion());
-            this.dibujarTableroConJugadores(listaJugadores);
+        	listaJugadores.dibujarTableroConJugadores();
         }
         }
         // Comprobar si ha ganado
@@ -128,114 +119,16 @@ public class JuegoParaPruebas {
     }
 
         
-    public void cambiarTurno() {
-
-        	int i = listaJugadores.indexOf(turnoActual);
-            
-            // Cambia al siguiente jugador, o al primero si es el ultimo
-            if (i + 1 < listaJugadores.size()) {
-                turnoActual = listaJugadores.get(i + 1);
-            } else {
-                turnoActual = listaJugadores.get(0); // Si es el ultimo jugador vuelve al primero
-            }
+        public void cambiarTurno() {
+        	turnoActual = listaJugadores.cambioDeTurnos();
+     
         }
 
-    public boolean comprobarGanador(JugadorParaPruebas pJugador) {
+        public boolean comprobarGanador(JugadorParaPruebas pJugador) {
             if(pJugador.getPosicion() == 63) {
             	return true;
             } else { return false;
             	}
         }
-        
-    public void dibujarTableroConJugadores(ArrayList<JugadorParaPruebas> pJugadores) {
-            int pFilas = 8;
-            int pColumnas = 8;
-            int[][] tablero = new int[pFilas][pColumnas];
-            int num = 1;
-            int total = 63;
-            int inicioFila = pFilas - 1, finFila = 0;
-            int inicioColumna = 0, finColumna = pColumnas - 1;
-
-            while (inicioFila >= finFila && inicioColumna <= finColumna && num <= total) {
-                for (int i = inicioColumna; i <= finColumna && num <= total; i++)
-                    tablero[inicioFila][i] = num++;
-                inicioFila--;
-
-                for (int i = inicioFila; i >= finFila && num <= total; i--)
-                    tablero[i][finColumna] = num++;
-                finColumna--;
-
-                for (int i = finColumna; i >= inicioColumna && num <= total; i--)
-                    tablero[finFila][i] = num++;
-                finFila++;
-
-                for (int i = finFila; i <= inicioFila && num <= total; i++)
-                    tablero[i][inicioColumna] = num++;
-                inicioColumna++;
-            }
-
-            // Dibujar el tablero con jugadores
-            for (int fila = 0; fila < pFilas; fila++) {
-                // Línea superior
-                for (int col = 0; col < pColumnas; col++) {
-                    System.out.print("+---------");
-                }
-                System.out.println("+");
-
-                // Línea vacía
-                for (int col = 0; col < pColumnas; col++) {
-                    System.out.print("|         ");
-                }
-                System.out.println("|");
-
-             // Línea con número o iniciales de jugadores
-                for (int col = 0; col < pColumnas; col++) {
-                    int casilla = tablero[fila][col];
-                    
-                    if (casilla == 0) {
-                        System.out.print("|         ");
-                    } else {
-                        // Recoger iniciales de jugadores en esta casilla
-                        StringBuilder iniciales = new StringBuilder();
-                        for (JugadorParaPruebas j : pJugadores) {
-                            if (j.getPosicion() == casilla) {
-                                iniciales.append(Character.toUpperCase(j.getNombre().charAt(0)));
-                            }
-                        }
-
-                        String contenido;
-                        if (iniciales.length() > 0) {
-                            contenido = iniciales.toString();  // Mostrar iniciales si hay jugadores
-                        } else {
-                            contenido = String.valueOf(casilla); // Mostrar número de casilla si no hay jugadores
-                        }
-
-                        // Centrado dentro de 9 espacios
-                        int espaciosTotales = 9 - contenido.length();
-                        int izquierda = espaciosTotales / 2;
-                        int derecha = espaciosTotales - izquierda;
-                        String espIzq = " ".repeat(izquierda);
-                        String espDer = " ".repeat(derecha);
-
-                        System.out.print("|" + espIzq + contenido + espDer);  // Mostrar la casilla con las iniciales
-                    }
-                }
-                System.out.println("|");
-
-
-                // Línea vacía inferior
-                for (int col = 0; col < pColumnas; col++) {
-                    System.out.print("|         ");
-                }
-                System.out.println("|");
-            }
-
-            // Línea inferior final
-            for (int col = 0; col < pColumnas; col++) {
-                System.out.print("+---------");
-            }
-            System.out.println("+");
-        }
-
-	       
-	}
+       
+}
